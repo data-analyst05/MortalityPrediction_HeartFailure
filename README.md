@@ -1,5 +1,11 @@
 # Heart Failure Prediction
 
+## Project Overview
+This project focuses on predicting mortality caused by Heart Failure using a dataset with 12 clinical features. Cardiovascular diseases are the leading cause of death globally, and early detection and management using machine learning can be crucial in saving lives.
+
+## Dataset
+The dataset contains various clinical parameters that are considered significant in the prognosis of heart failure. These include factors like Anaemia, Diabetes, Blood Pressure, and Ejection Fraction, among others.
+
 ## About the data
 
 | Column | Description |
@@ -15,6 +21,10 @@
 | sex | The sex of the patient. |
 | Smoking | If the patient smokes actively or ever did in past. |
 | Time | It is the time of the patient's follow-up visit for the disease in months. |
+
+
+## Objective
+Our goal is to develop a machine learning model capable of predicting mortality risk with a high degree of accuracy, aiding in early intervention and treatment strategies.
 
 ## QUESTIONS
 
@@ -40,7 +50,35 @@
 
 - What role does smoking play in the development of heart failure?
 
+## Tools and Technologies
+- **Python**: Primary programming language
+- **Pandas**: Data manipulation and analysis
+- **Scikit-learn**: Machine learning library
+- **Matplotlib/Seaborn**: Data visualization
 
+## Installation
+To set up the project environment, clone the repository and install the required dependencies:
+
+```bash
+git clone https://github.com/data-analyst05/MortalityPrediction_HeartFailure.git
+```
+
+## Usage
+Run the jupyter notebook mortality_heart_rate.ipynb script to train the model and see the predictions:
+
+```bash
+mortality_heart_rate.ipynb
+```
+
+## Model Implementation
+The model is implemented in Python, with preprocessing steps including data cleaning, normalization, and standardization. The model's performance is evaluated based on classification accuracy, aiming for at least a 75% accuracy or 0.80 R-squared value.
+
+## Model Optimization
+The model undergoes iterative improvements with hyperparameter tuning and cross-validation. Each change's impact on performance is documented for transparency and replicability.
+
+## ERD Diagram
+
+## Contributing
 
 
 
