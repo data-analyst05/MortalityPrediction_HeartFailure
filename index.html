@@ -95,20 +95,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#preliminary-information" id="toc-preliminary-information" class="nav-link" data-scroll-target="#preliminary-information"><span class="header-section-number">1.1</span> Preliminary Information</a></li>
   <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data"><span class="header-section-number">1.2</span> About The Data</a></li>
   <li><a href="#packages-and-dependencies" id="toc-packages-and-dependencies" class="nav-link" data-scroll-target="#packages-and-dependencies"><span class="header-section-number">1.3</span> Packages and Dependencies</a></li>
+  <li><a href="#color-palette" id="toc-color-palette" class="nav-link" data-scroll-target="#color-palette"><span class="header-section-number">1.4</span> Color Palette</a></li>
   </ul></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">2</span> Data Preparation</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">2</span> Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#load-our-data" id="toc-load-our-data" class="nav-link" data-scroll-target="#load-our-data"><span class="header-section-number">2.1</span> Load our data</a></li>
+  <li><a href="#clean-our-data" id="toc-clean-our-data" class="nav-link" data-scroll-target="#clean-our-data"><span class="header-section-number">2.2</span> Clean our data</a></li>
+  </ul></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a>
   <ul class="collapse">
-  <li><a href="#exploratory" id="toc-exploratory" class="nav-link" data-scroll-target="#exploratory"><span class="header-section-number">3.1</span> Exploratory</a></li>
+  <li><a href="#exploratory" id="toc-exploratory" class="nav-link" data-scroll-target="#exploratory"><span class="header-section-number">3.1</span> Exploratory</a>
+  <ul class="collapse">
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">3.1.1</span> Histogram</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><span class="header-section-number">4</span> Machine Learning</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">5</span> Acknowledgements</a>
-  <ul class="collapse">
-  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation"><span class="header-section-number">5.1</span> Citation</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license"><span class="header-section-number">5.2</span> License</a></li>
-  <li><a href="#splash-icon" id="toc-splash-icon" class="nav-link" data-scroll-target="#splash-icon"><span class="header-section-number">5.3</span> Splash icon</a></li>
-  <li><a href="#splash-banner" id="toc-splash-banner" class="nav-link" data-scroll-target="#splash-banner"><span class="header-section-number">5.4</span> Splash banner</a></li>
-  </ul></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">5</span> Acknowledgements</a></li>
   </ul>
 </nav>
 </div>
@@ -223,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="packages-and-dependencies" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="packages-and-dependencies"><span class="header-section-number">1.3</span> Packages and Dependencies</h2>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="14">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -233,21 +235,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 </section>
+<section id="color-palette" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="color-palette"><span class="header-section-number">1.4</span> Color Palette</h2>
+<div class="cell" data-execution_count="43">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pink <span class="op">=</span> <span class="st">"#EB84AC"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
 </section>
 <section id="data-preparation" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Data Preparation</h1>
-<div class="cell" data-execution_count="5">
+<section id="load-our-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="load-our-data"><span class="header-section-number">2.1</span> Load our data</h2>
+<div class="cell" data-execution_count="15">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/heart_failure_clinical_records_dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/heart_failure_clinical_records_dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="16">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
 
@@ -357,10 +370,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="17">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -385,21 +398,24 @@ dtypes: float64(3), int64(10)
 memory usage: 30.5 KB</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
+</section>
+<section id="clean-our-data" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="clean-our-data"><span class="header-section-number">2.2</span> Clean our data</h2>
+<div class="cell" data-execution_count="18">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleaning the data: removing blank lines and null values</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for null values in the dataset</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>null_values <span class="op">=</span> df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleaning the data: removing blank lines and null values</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for null values in the dataset</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>null_values <span class="op">=</span> df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="19">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>null_values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>null_values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>age                         0
 anaemia                     0
 creatinine_phosphokinase    0
@@ -416,34 +432,34 @@ DEATH_EVENT                 0
 dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="21">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking if there are any blank lines (all values are NaN)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>blank_lines <span class="op">=</span> df.isna().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking if there are any blank lines (all values are NaN)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>blank_lines <span class="op">=</span> df.isna().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-execution_count="10">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>blank_lines</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>blank_lines</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>0</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="22">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing any rows with null values</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing any rows with null values</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-execution_count="12">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying the null value count and blank line count, and the first few rows of the cleaned dataframe</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>null_values, blank_lines, df_cleaned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying the null value count and blank line count, and the first few rows of the cleaned dataframe</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>null_values, blank_lines, df_cleaned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>(age                         0
@@ -483,12 +499,18 @@ dtype: int64</code></pre>
  4        0     8            1  )</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="24">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_cleaned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df_cleaned.rename(columns<span class="op">=</span>{<span class="st">'DEATH_EVENT'</span>: <span class="st">'death_event'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="13">
+</div>
+<div class="cell" data-execution_count="25">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_cleaned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -508,7 +530,7 @@ dtype: int64</code></pre>
 <th data-quarto-table-cell-role="th">sex</th>
 <th data-quarto-table-cell-role="th">smoking</th>
 <th data-quarto-table-cell-role="th">time</th>
-<th data-quarto-table-cell-role="th">DEATH_EVENT</th>
+<th data-quarto-table-cell-role="th">death_event</th>
 </tr>
 </thead>
 <tbody>
@@ -599,10 +621,240 @@ dtype: int64</code></pre>
 </div>
 </div>
 </section>
+</section>
 <section id="analysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Analysis</h1>
 <section id="exploratory" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="exploratory"><span class="header-section-number">3.1</span> Exploratory</h2>
+<section id="histogram" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">3.1.1</span> Histogram</h3>
+<div class="cell" data-execution_count="37">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">max</span>(df_cleaned[<span class="st">"age"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>95.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="38">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">min</span>(df_cleaned[<span class="st">"age"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>40.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="62">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Figure1, Axes1 <span class="op">=</span> plt.subplots()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Axes1.hist(df[<span class="st">"age"</span>],</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>           bins <span class="op">=</span> [<span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>],</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>           edgecolor <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>           color <span class="op">=</span> pink)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>Axes1.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>Axes1.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>plt.title(label <span class="op">=</span> <span class="st">"Histogram"</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>          loc <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        fontsize <span class="op">=</span> <span class="dv">20</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(ylabel <span class="op">=</span> <span class="st">"Count"</span>,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>           fontsize <span class="op">=</span> <span class="dv">16</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(xlabel <span class="op">=</span> <span class="st">"Age Range"</span>,</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>           fontsize <span class="op">=</span> <span class="dv">16</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"./Images/Figure1"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.hist(df_cleaned[<span class="st">"age"</span>],</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>         edgecolor <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         bins <span class="op">=</span> [<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>(array([47., 82., 93., 52., 19.,  6.]),
+ array([ 40.,  50.,  60.,  70.,  80.,  90., 100.]),
+ &lt;BarContainer object of 6 artists&gt;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="33">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_cleaned[df_cleaned[<span class="st">"age"</span>] <span class="op">&gt;</span> <span class="dv">85</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">anaemia</th>
+<th data-quarto-table-cell-role="th">creatinine_phosphokinase</th>
+<th data-quarto-table-cell-role="th">diabetes</th>
+<th data-quarto-table-cell-role="th">ejection_fraction</th>
+<th data-quarto-table-cell-role="th">high_blood_pressure</th>
+<th data-quarto-table-cell-role="th">platelets</th>
+<th data-quarto-table-cell-role="th">serum_creatinine</th>
+<th data-quarto-table-cell-role="th">serum_sodium</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">smoking</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">death_event</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>90.0</td>
+<td>1</td>
+<td>47</td>
+<td>0</td>
+<td>40</td>
+<td>1</td>
+<td>204000.00</td>
+<td>2.10</td>
+<td>132</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">16</td>
+<td>87.0</td>
+<td>1</td>
+<td>149</td>
+<td>0</td>
+<td>38</td>
+<td>0</td>
+<td>262000.00</td>
+<td>0.90</td>
+<td>140</td>
+<td>1</td>
+<td>0</td>
+<td>14</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>95.0</td>
+<td>1</td>
+<td>112</td>
+<td>0</td>
+<td>40</td>
+<td>1</td>
+<td>196000.00</td>
+<td>1.00</td>
+<td>138</td>
+<td>0</td>
+<td>0</td>
+<td>24</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">30</td>
+<td>94.0</td>
+<td>0</td>
+<td>582</td>
+<td>1</td>
+<td>38</td>
+<td>1</td>
+<td>263358.03</td>
+<td>1.83</td>
+<td>134</td>
+<td>1</td>
+<td>0</td>
+<td>27</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>90.0</td>
+<td>1</td>
+<td>60</td>
+<td>1</td>
+<td>50</td>
+<td>0</td>
+<td>226000.00</td>
+<td>1.00</td>
+<td>134</td>
+<td>1</td>
+<td>0</td>
+<td>30</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">55</td>
+<td>95.0</td>
+<td>1</td>
+<td>371</td>
+<td>0</td>
+<td>30</td>
+<td>0</td>
+<td>461000.00</td>
+<td>2.00</td>
+<td>132</td>
+<td>1</td>
+<td>0</td>
+<td>50</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">119</td>
+<td>86.0</td>
+<td>0</td>
+<td>582</td>
+<td>0</td>
+<td>38</td>
+<td>0</td>
+<td>263358.03</td>
+<td>1.83</td>
+<td>134</td>
+<td>0</td>
+<td>0</td>
+<td>95</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">289</td>
+<td>90.0</td>
+<td>1</td>
+<td>337</td>
+<td>0</td>
+<td>38</td>
+<td>0</td>
+<td>390000.00</td>
+<td>0.90</td>
+<td>144</td>
+<td>0</td>
+<td>0</td>
+<td>256</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="machine-learning" class="level1" data-number="4">
@@ -610,22 +862,14 @@ dtype: int64</code></pre>
 </section>
 <section id="acknowledgements" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Acknowledgements</h1>
-<section id="citation" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="citation"><span class="header-section-number">5.1</span> Citation</h2>
+<p><strong>Citation</strong></p>
 <p>Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020). <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5">(link)</a></p>
-</section>
-<section id="license" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="license"><span class="header-section-number">5.2</span> License</h2>
+<p><strong>License</strong></p>
 <p>CC BY 4.0</p>
-</section>
-<section id="splash-icon" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="splash-icon"><span class="header-section-number">5.3</span> Splash icon</h2>
+<p><strong>Splash icon</strong></p>
 <p>Icon by Freepik, available on Flaticon.</p>
-</section>
-<section id="splash-banner" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="splash-banner"><span class="header-section-number">5.4</span> Splash banner</h2>
+<p><strong>Splash banner</strong></p>
 <p>Wallpaper by jcomp, available on Freepik.</p>
-</section>
 </section>
 
 </main>
