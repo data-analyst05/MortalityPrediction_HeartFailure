@@ -102,15 +102,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-our-data" id="toc-load-our-data" class="nav-link" data-scroll-target="#load-our-data"><span class="header-section-number">2.1</span> Load our data</a></li>
   <li><a href="#clean-our-data" id="toc-clean-our-data" class="nav-link" data-scroll-target="#clean-our-data"><span class="header-section-number">2.2</span> Clean our data</a></li>
   </ul></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a>
+  <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link" data-scroll-target="#exploratory-analysis"><span class="header-section-number">3</span> Exploratory Analysis</a>
   <ul class="collapse">
-  <li><a href="#exploratory" id="toc-exploratory" class="nav-link" data-scroll-target="#exploratory"><span class="header-section-number">3.1</span> Exploratory</a>
-  <ul class="collapse">
-  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">3.1.1</span> Histogram</a></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">3.0.1</span> Histogram</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><span class="header-section-number">4</span> Machine Learning</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">5</span> Acknowledgements</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">4</span> Analysis</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><span class="header-section-number">5</span> Machine Learning</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">6</span> Acknowledgements</a></li>
   </ul>
 </nav>
 </div>
@@ -622,12 +620,10 @@ dtype: int64</code></pre>
 </div>
 </section>
 </section>
-<section id="analysis" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Analysis</h1>
-<section id="exploratory" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="exploratory"><span class="header-section-number">3.1</span> Exploratory</h2>
-<section id="histogram" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">3.1.1</span> Histogram</h3>
+<section id="exploratory-analysis" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Exploratory Analysis</h1>
+<section id="histogram" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">3.0.1</span> Histogram</h3>
 <div class="cell" data-execution_count="37">
 <details open="">
 <summary>Code</summary>
@@ -858,14 +854,62 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Figure2, Axes1 <span class="op">=</span> plt.subplots()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>Axes1.scatter(DF[<span class="st">"age"</span>],</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>              DF[<span class="st">"creatinine_phosphokinase"</span>])</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plt.title(label<span class="op">=</span> <span class="st">"Age and CPK"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="79">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Figure2, Axes2 <span class="op">=</span> plt.subplots()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>Axes2.scatter(df_cleaned[<span class="st">"age"</span>],</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>              df_cleaned[<span class="st">"creatinine_phosphokinase"</span>],</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>              color <span class="op">=</span> pink)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>Axes2.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>Axes2.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>Axes2.yaxis.set_tick_params(labelsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>Axes2.xaxis.set_tick_params(labelsize <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>plt.title(label <span class="op">=</span> <span class="st">"Levels of Creatinine Phosphokinase by Age"</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>          loc <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        fontsize <span class="op">=</span> <span class="dv">16</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(ylabel <span class="op">=</span> <span class="st">"Creatinine Phosphokinase (mcg/L)"</span>,</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>           fontsize <span class="op">=</span> <span class="dv">12</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(xlabel <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>           fontsize <span class="op">=</span> <span class="dv">12</span>)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>plt.savefig(fname <span class="op">=</span> <span class="st">"./Images/Figure2"</span>,</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>            dpi <span class="op">=</span> <span class="dv">400</span>)</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
 </section>
 </section>
+<section id="analysis" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Analysis</h1>
 </section>
-<section id="machine-learning" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Machine Learning</h1>
+<section id="machine-learning" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Machine Learning</h1>
 </section>
-<section id="acknowledgements" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Acknowledgements</h1>
+<section id="acknowledgements" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Acknowledgements</h1>
 <p><strong>Citation</strong></p>
 <p>Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020). <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5">(link)</a></p>
 <p><strong>License</strong></p>
