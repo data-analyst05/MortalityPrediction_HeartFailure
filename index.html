@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Amna Hassan">
+<meta name="author" content="Angel Alcala Ruiz">
+<meta name="author" content="Ese">
+<meta name="author" content="Garima C.">
+<meta name="author" content="Giovonna Brendanna">
+<meta name="author" content="Nameeta Tiwari">
+<meta name="author" content="Nidh Nigam">
+<meta name="dcterms.date" content="2024-01-23">
+
+<title>Heart Failure Prediction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#preliminary-information" id="toc-preliminary-information" class="nav-link" data-scroll-target="#preliminary-information"><span class="header-section-number">1.1</span> Preliminary Information</a></li>
+  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data"><span class="header-section-number">1.2</span> About The Data</a></li>
+  <li><a href="#packages-and-dependencies" id="toc-packages-and-dependencies" class="nav-link" data-scroll-target="#packages-and-dependencies"><span class="header-section-number">1.3</span> Packages and Dependencies</a></li>
+  </ul></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">2</span> Data Preparation</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exploratory" id="toc-exploratory" class="nav-link" data-scroll-target="#exploratory"><span class="header-section-number">3.1</span> Exploratory</a></li>
+  </ul></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><span class="header-section-number">4</span> Machine Learning</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">5</span> Acknowledgements</a>
+  <ul class="collapse">
+  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation"><span class="header-section-number">5.1</span> Citation</a></li>
+  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license"><span class="header-section-number">5.2</span> License</a></li>
+  <li><a href="#splash-icon" id="toc-splash-icon" class="nav-link" data-scroll-target="#splash-icon"><span class="header-section-number">5.3</span> Splash icon</a></li>
+  <li><a href="#splash-banner" id="toc-splash-banner" class="nav-link" data-scroll-target="#splash-banner"><span class="header-section-number">5.4</span> Splash banner</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Heart Failure Prediction</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Amna Hassan </p>
+             <p>Angel Alcala Ruiz </p>
+             <p>Ese </p>
+             <p>Garima C. </p>
+             <p>Giovonna Brendanna </p>
+             <p>Nameeta Tiwari </p>
+             <p>Nidh Nigam </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 23, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="preliminary-information" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="preliminary-information"><span class="header-section-number">1.1</span> Preliminary Information</h2>
+<p>Cardiovascular diseases (CVDs) are the <strong>number 1 cause of death globally</strong>, taking an estimated 17.9 million lives each year, which accounts for <strong>31% of all deaths worlwide</strong>. Heart failure is a common event caused by CVDs and this dataset contains 12 features that can be used to predict mortality by heart failure.</p>
+<p>Most cardiovascular diseases can be prevented by addressing behavioural risk factors such as tobacco use, unhealthy diet and obesity, physical inactivity and harmful use of alcohol using population-wide strategies.</p>
+<p>People with cardiovascular disease or who are at high cardiovascular risk (due to the presence of one or more risk factors such as hypertension, diabetes, hyperlipidaemia or already established disease) need <strong>early detection</strong> and management wherein a machine learning model can be of great help.</p>
+<p><a href="https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data">https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data</a></p>
+</section>
+<section id="about-the-data" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="about-the-data"><span class="header-section-number">1.2</span> About The Data</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Anaemia</td>
+<td>Indicates decrease of red blood cells or hemoglobin.</td>
+</tr>
+<tr class="even">
+<td>Creatinine Phosphokinase</td>
+<td>It is an enzyme present in the heart, whose elevated levels in the bloodstream indicate muscle or cardiac damage.</td>
+</tr>
+<tr class="odd">
+<td>Diabetes</td>
+<td>It is a chronic medical condition characterized by elevated blood sugar levels resulting from insufficient insulin production or the body’s inability to effectively use insulin.</td>
+</tr>
+<tr class="even">
+<td>Ejection Fraction</td>
+<td>It is a measure of the percentage of blood that the heart’s left ventricle pumps out with each contraction, providing an assessment of the heart’s pumping efficiency; a lower EF may indicate heart dysfunction or failure.</td>
+</tr>
+<tr class="odd">
+<td>Blood Pressure</td>
+<td>Blood pressure is the force exerted by circulating blood against the walls of arteries.</td>
+</tr>
+<tr class="even">
+<td>Platelets</td>
+<td>platelets help prevent excessive bleeding by forming blood clots at the site of vascular injury.</td>
+</tr>
+<tr class="odd">
+<td>Serum Creatinine</td>
+<td>Serum creatinine is a waste product generated by muscle metabolism that is filtered out of the blood by the kidneys.</td>
+</tr>
+<tr class="even">
+<td>Serum Sodium</td>
+<td>Serum sodium refers to the concentration of sodium ions in the liquid component of blood.</td>
+</tr>
+<tr class="odd">
+<td>sex</td>
+<td>The sex of the patient.</td>
+</tr>
+<tr class="even">
+<td>Smoking</td>
+<td>If the patient smokes actively or ever did in past.</td>
+</tr>
+<tr class="odd">
+<td>Time</td>
+<td>It is the time of the patient’s follow-up visit for the disease in months.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="packages-and-dependencies" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="packages-and-dependencies"><span class="header-section-number">1.3</span> Packages and Dependencies</h2>
+<div class="cell" data-execution_count="1">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="data-preparation" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Data Preparation</h1>
+<div class="cell" data-execution_count="5">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Data/heart_failure_clinical_records_dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="3">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">anaemia</th>
+<th data-quarto-table-cell-role="th">creatinine_phosphokinase</th>
+<th data-quarto-table-cell-role="th">diabetes</th>
+<th data-quarto-table-cell-role="th">ejection_fraction</th>
+<th data-quarto-table-cell-role="th">high_blood_pressure</th>
+<th data-quarto-table-cell-role="th">platelets</th>
+<th data-quarto-table-cell-role="th">serum_creatinine</th>
+<th data-quarto-table-cell-role="th">serum_sodium</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">smoking</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">DEATH_EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>75.0</td>
+<td>0</td>
+<td>582</td>
+<td>0</td>
+<td>20</td>
+<td>1</td>
+<td>265000.00</td>
+<td>1.9</td>
+<td>130</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>55.0</td>
+<td>0</td>
+<td>7861</td>
+<td>0</td>
+<td>38</td>
+<td>0</td>
+<td>263358.03</td>
+<td>1.1</td>
+<td>136</td>
+<td>1</td>
+<td>0</td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>65.0</td>
+<td>0</td>
+<td>146</td>
+<td>0</td>
+<td>20</td>
+<td>0</td>
+<td>162000.00</td>
+<td>1.3</td>
+<td>129</td>
+<td>1</td>
+<td>1</td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>50.0</td>
+<td>1</td>
+<td>111</td>
+<td>0</td>
+<td>20</td>
+<td>0</td>
+<td>210000.00</td>
+<td>1.9</td>
+<td>137</td>
+<td>1</td>
+<td>0</td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>65.0</td>
+<td>1</td>
+<td>160</td>
+<td>1</td>
+<td>20</td>
+<td>0</td>
+<td>327000.00</td>
+<td>2.7</td>
+<td>116</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 299 entries, 0 to 298
+Data columns (total 13 columns):
+ #   Column                    Non-Null Count  Dtype  
+---  ------                    --------------  -----  
+ 0   age                       299 non-null    float64
+ 1   anaemia                   299 non-null    int64  
+ 2   creatinine_phosphokinase  299 non-null    int64  
+ 3   diabetes                  299 non-null    int64  
+ 4   ejection_fraction         299 non-null    int64  
+ 5   high_blood_pressure       299 non-null    int64  
+ 6   platelets                 299 non-null    float64
+ 7   serum_creatinine          299 non-null    float64
+ 8   serum_sodium              299 non-null    int64  
+ 9   sex                       299 non-null    int64  
+ 10  smoking                   299 non-null    int64  
+ 11  time                      299 non-null    int64  
+ 12  DEATH_EVENT               299 non-null    int64  
+dtypes: float64(3), int64(10)
+memory usage: 30.5 KB</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleaning the data: removing blank lines and null values</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for null values in the dataset</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>null_values <span class="op">=</span> df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="8">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>null_values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>age                         0
+anaemia                     0
+creatinine_phosphokinase    0
+diabetes                    0
+ejection_fraction           0
+high_blood_pressure         0
+platelets                   0
+serum_creatinine            0
+serum_sodium                0
+sex                         0
+smoking                     0
+time                        0
+DEATH_EVENT                 0
+dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking if there are any blank lines (all values are NaN)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>blank_lines <span class="op">=</span> df.isna().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="10">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>blank_lines</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing any rows with null values</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_cleaned <span class="op">=</span> df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="12">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying the null value count and blank line count, and the first few rows of the cleaned dataframe</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>null_values, blank_lines, df_cleaned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>(age                         0
+ anaemia                     0
+ creatinine_phosphokinase    0
+ diabetes                    0
+ ejection_fraction           0
+ high_blood_pressure         0
+ platelets                   0
+ serum_creatinine            0
+ serum_sodium                0
+ sex                         0
+ smoking                     0
+ time                        0
+ DEATH_EVENT                 0
+ dtype: int64,
+ 0,
+     age  anaemia  creatinine_phosphokinase  diabetes  ejection_fraction  \
+ 0  75.0        0                       582         0                 20   
+ 1  55.0        0                      7861         0                 38   
+ 2  65.0        0                       146         0                 20   
+ 3  50.0        1                       111         0                 20   
+ 4  65.0        1                       160         1                 20   
+ 
+    high_blood_pressure  platelets  serum_creatinine  serum_sodium  sex  \
+ 0                    1  265000.00               1.9           130    1   
+ 1                    0  263358.03               1.1           136    1   
+ 2                    0  162000.00               1.3           129    1   
+ 3                    0  210000.00               1.9           137    1   
+ 4                    0  327000.00               2.7           116    0   
+ 
+    smoking  time  DEATH_EVENT  
+ 0        0     4            1  
+ 1        0     6            1  
+ 2        1     7            1  
+ 3        0     7            1  
+ 4        0     8            1  )</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_cleaned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">anaemia</th>
+<th data-quarto-table-cell-role="th">creatinine_phosphokinase</th>
+<th data-quarto-table-cell-role="th">diabetes</th>
+<th data-quarto-table-cell-role="th">ejection_fraction</th>
+<th data-quarto-table-cell-role="th">high_blood_pressure</th>
+<th data-quarto-table-cell-role="th">platelets</th>
+<th data-quarto-table-cell-role="th">serum_creatinine</th>
+<th data-quarto-table-cell-role="th">serum_sodium</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">smoking</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">DEATH_EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>75.0</td>
+<td>0</td>
+<td>582</td>
+<td>0</td>
+<td>20</td>
+<td>1</td>
+<td>265000.00</td>
+<td>1.9</td>
+<td>130</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>55.0</td>
+<td>0</td>
+<td>7861</td>
+<td>0</td>
+<td>38</td>
+<td>0</td>
+<td>263358.03</td>
+<td>1.1</td>
+<td>136</td>
+<td>1</td>
+<td>0</td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>65.0</td>
+<td>0</td>
+<td>146</td>
+<td>0</td>
+<td>20</td>
+<td>0</td>
+<td>162000.00</td>
+<td>1.3</td>
+<td>129</td>
+<td>1</td>
+<td>1</td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>50.0</td>
+<td>1</td>
+<td>111</td>
+<td>0</td>
+<td>20</td>
+<td>0</td>
+<td>210000.00</td>
+<td>1.9</td>
+<td>137</td>
+<td>1</td>
+<td>0</td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>65.0</td>
+<td>1</td>
+<td>160</td>
+<td>1</td>
+<td>20</td>
+<td>0</td>
+<td>327000.00</td>
+<td>2.7</td>
+<td>116</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="analysis" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Analysis</h1>
+<section id="exploratory" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="exploratory"><span class="header-section-number">3.1</span> Exploratory</h2>
+</section>
+</section>
+<section id="machine-learning" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Machine Learning</h1>
+</section>
+<section id="acknowledgements" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Acknowledgements</h1>
+<section id="citation" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="citation"><span class="header-section-number">5.1</span> Citation</h2>
+<p>Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020). <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5">(link)</a></p>
+</section>
+<section id="license" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="license"><span class="header-section-number">5.2</span> License</h2>
+<p>CC BY 4.0</p>
+</section>
+<section id="splash-icon" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="splash-icon"><span class="header-section-number">5.3</span> Splash icon</h2>
+<p>Icon by Freepik, available on Flaticon.</p>
+</section>
+<section id="splash-banner" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="splash-banner"><span class="header-section-number">5.4</span> Splash banner</h2>
+<p>Wallpaper by jcomp, available on Freepik.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
