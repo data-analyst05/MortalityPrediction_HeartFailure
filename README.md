@@ -77,8 +77,11 @@ The model is implemented in Python, with preprocessing steps including data clea
 The model undergoes iterative improvements with hyperparameter tuning and cross-validation. Each change's impact on performance is documented for transparency and replicability.
 
 ## ERD Diagram
+ ![QuickDBD-export](https://github.com/data-analyst05/MortalityPrediction_HeartFailure/assets/140780906/89f5be35-9a96-4ed8-8151-8fc90ee4461f)
 
-## Contributing
+
+
+
 
 
 
