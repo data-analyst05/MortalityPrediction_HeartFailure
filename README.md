@@ -3,6 +3,10 @@
 ## Project Overview
 This project focuses on predicting mortality caused by Heart Failure using a dataset with 12 clinical features. Cardiovascular diseases are the leading cause of death globally, and early detection and management using machine learning can be crucial in saving lives.
 
+## Presentation Link : 
+
+https://1drv.ms/p/s!Ap10IyLAlyDwjQpGRVjMNjuuHxls
+
 ## Dataset
 The dataset contains various clinical parameters that are considered significant in the prognosis of heart failure. These include factors like Anaemia, Diabetes, Blood Pressure, and Ejection Fraction, among others.
 
